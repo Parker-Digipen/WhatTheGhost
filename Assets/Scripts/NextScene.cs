@@ -17,8 +17,12 @@ public class NextScene : MonoBehaviour
     {
         
     }
-    void ButtonPress()
+    public void ButtonPress()
     {
-        SceneManager.LoadScene(scene)
+        SceneManager.LoadScene(scene);
+    }
+    public void no()
+    {
+        Application.Quit();
     }
 }
