@@ -16,6 +16,7 @@ public class PlayerMovementControler : MonoBehaviour
     private string[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
     private string typed = "";
+    private bool typing = false;
 
     void Start()
     {
@@ -27,12 +28,31 @@ public class PlayerMovementControler : MonoBehaviour
     void Update()
     {
         //Player Movement
-        direction.x = LastKey(left, right);
-        direction.y = LastKey(down, up);
-        direction.Normalize();
-        myRB.velocity = direction*speed;
+        if (!typing)
+        {
+            direction.x = LastKey(left, right);
+            direction.y = LastKey(down, up);
+            direction.Normalize();
+            myRB.velocity = direction * speed;
+        }
 
         //Text Input
+        if(!typing && Input.GetKeyDown(KeyCode.CapsLock))
+        {
+            typing = true;
+        } 
+        else if(typing && Input.GetKeyDown(KeyCode.CapsLock))
+        {
+            typing = false;
+        }
+
+        if(typing)
+            UserTyping();
+
+    }
+
+    private void UserTyping()
+    {
         for (int i = 0; i <= hate.Length - 1; i++)
         {
             if (Input.GetKeyDown(hate[i]))
@@ -45,9 +65,7 @@ public class PlayerMovementControler : MonoBehaviour
             typed = "";
         }
         print(typed);
-
     }
-
     private int LastKey(KeyCode negative, KeyCode positive)
     {
         int dir = 0;
