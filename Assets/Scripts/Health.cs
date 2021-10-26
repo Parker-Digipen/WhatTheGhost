@@ -9,10 +9,10 @@ public class Health : MonoBehaviour
 
     public bool DestroyAtZero = true;
 
-    public float InvincTime = 0.3f;
+    public float InvincTime = 0;
     float InvTimer = 0;
 
-    float DeathTime = 0.2f;
+    float DeathTime = 2.3f;
     bool Dying = false;
     public void ChangeHealth(int amount)
     {
