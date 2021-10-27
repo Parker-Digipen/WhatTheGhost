@@ -64,7 +64,7 @@ public class PlayerMovementControler : MonoBehaviour
         {
             typed = "";
         }
-        print(typed);
+        GameManager.Word = typed;
     }
     private int LastKey(KeyCode negative, KeyCode positive)
     {
