@@ -17,6 +17,7 @@ public class PlayerMovementControler : MonoBehaviour
 
     private string typed = "";
     private bool typing = false;
+    int charIndex = 0;
 
     void Start()
     {
@@ -37,16 +38,16 @@ public class PlayerMovementControler : MonoBehaviour
         }
 
         //Text Input
-        if(!typing && Input.GetKeyDown(KeyCode.CapsLock))
+        if (!typing && Input.GetKeyDown(KeyCode.LeftShift))
         {
             typing = true;
-        } 
-        else if(typing && Input.GetKeyDown(KeyCode.CapsLock))
+        }
+        else if (typing && Input.GetKeyDown(KeyCode.LeftShift))
         {
             typing = false;
         }
-
-        if(typing)
+        //switch to typing mode
+        if (typing)
             UserTyping();
 
     }
@@ -58,13 +59,13 @@ public class PlayerMovementControler : MonoBehaviour
             if (Input.GetKeyDown(hate[i]))
             {
                 typed += alphabet[i];
+                charIndex++;
             }
         }
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Escape))
         {
             typed = "";
         }
-        GameManager.Word = typed;
     }
     private int LastKey(KeyCode negative, KeyCode positive)
     {

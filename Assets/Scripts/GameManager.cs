@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    private static string _word = "";
+    private static string _word = "TEXT";
     public static UnityEvent onWordChange = new UnityEvent();
 
     public static string Word
