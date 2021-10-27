@@ -6,7 +6,10 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     private static string _word = "TEXT";
+    private static string _typed = "";
     public static UnityEvent onWordChange = new UnityEvent();
+    
+    public static UnityEvent onTyped = new UnityEvent();
 
     public static string Word
     {
@@ -18,6 +21,19 @@ public class GameManager : MonoBehaviour
         {
             _word = value;
             onWordChange.Invoke();
+        }
+    }
+
+        public static string Typed
+    {
+        get
+        {
+            return _typed;
+        }
+        set
+        {
+            _typed = value;
+            onTyped.Invoke();
         }
     }
 

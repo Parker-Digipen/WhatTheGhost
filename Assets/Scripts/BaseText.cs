@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ScoreText : MonoBehaviour
+public class BaseText : MonoBehaviour
 {
     TMP_Text word;
 
