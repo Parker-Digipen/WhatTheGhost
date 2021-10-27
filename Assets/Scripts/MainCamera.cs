@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MainCamera : MonoBehaviour
 {
-    [Tooltip("Drag the object from the heirarchy tab into this slot that you want the camera to follow")]
+    [Tooltip("Camera will follow this object")]
     public GameObject Target;
-    [Tooltip("Set between 0 and one kinda how fast it moves to the target")]
-    public float LerpVal = 1.5f;
+    [Tooltip("Set between 0 and 1 for best results")]
+    public float LerpVal = 0.05f;
 
     float ShakeTime = 0;
     float ShakeAmount = 0;
@@ -57,9 +57,6 @@ public class MainCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            TriggerShake(0.2f, 0.2f);
-        }
+       
     }
 }
