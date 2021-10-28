@@ -5,7 +5,7 @@ using TMPro;
 
 public class BaseText : MonoBehaviour
 {
-    TMP_Text word;
+    public TMP_Text word;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,7 @@ public class BaseText : MonoBehaviour
     public void ChangeText()
     {
         word.text = GameManager.Word;
+        word.rectTransform.sizeDelta = new Vector2(word.preferredWidth, 50);
     }
 
     // Update is called once per frame
