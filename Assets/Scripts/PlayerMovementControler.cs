@@ -14,7 +14,7 @@ public class PlayerMovementControler : MonoBehaviour
     MainCamera shook;
     private KeyCode[] hate = { KeyCode.A, KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.E, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.M, KeyCode.N, KeyCode.O, KeyCode.P, KeyCode.Q, KeyCode.R, KeyCode.S, KeyCode.T, KeyCode.U, KeyCode.V, KeyCode.W, KeyCode.X, KeyCode.Y, KeyCode.Z };
     private char[] alphabet = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-    private bool typing = false;
+    public bool typing = false;
 
     void Start()
     {
@@ -66,7 +66,7 @@ public class PlayerMovementControler : MonoBehaviour
                     //if not, shake and remove character from end
                     else
                     {
-                        shook.TriggerShake(0.1f, 0.5f);
+                        shook.TriggerShake(0.1f, 0.25f);
                         //trims the end of typed
                         if (GameManager.Typed.Length > 0) {
                             GameManager.Typed = GameManager.Typed.TrimEnd(GameManager.Typed[GameManager.Typed.Length - 1]);
@@ -74,12 +74,19 @@ public class PlayerMovementControler : MonoBehaviour
                     }
                 }
             }
-            //word finished correctly
+            //space pressed
             if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
             {
+                //is the word finished (correctly)
                 if (GameManager.Typed.Length == GameManager.Word.Length)
                 {
+                    //clears the typed string
                     GameManager.Typed = "";
+                }
+                //if not then shake screen (but don't remove characters)
+                else
+                {
+                    shook.TriggerShake(0.1f, 0.1f);
                 }
             }
         }

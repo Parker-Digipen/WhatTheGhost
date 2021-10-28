@@ -16,7 +16,7 @@ using UnityEngine;
 public class CharacterAnimation : MonoBehaviour
 {
     [Tooltip("The radi")]
-    public float radius = 1;
+    public float size = 1;
     [Tooltip("The speed")]
     public float speed = 1;
 
@@ -27,16 +27,20 @@ public class CharacterAnimation : MonoBehaviour
 
     private float startingXScale;
     private float startingY;
+    private float startingX;
     private int dirrection = 0;
 
     private SpriteRenderer mySR;
+    private PlayerMovementControler myPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
         startingXScale = transform.localScale.x;
         startingY = transform.localPosition.y;
+        startingX = transform.localPosition.x;
         mySR = GetComponent<SpriteRenderer>();
+        myPlayer = FindObjectOfType<PlayerMovementControler>();
     }
 
     // Update is called once per frame
@@ -44,6 +48,11 @@ public class CharacterAnimation : MonoBehaviour
     {
         thingDo(leftKey, rightKey);
         thingDo(downKey, upKey);
+        if(myPlayer.typing)
+        {
+            transform.localPosition = new Vector2(transform.localPosition.x, startingY + Mathf.Sin(Time.time * speed) * size * 0.25f);
+        }
+
     }
     private int thingDo(KeyCode negative, KeyCode positive)
     {
@@ -79,7 +88,6 @@ public class CharacterAnimation : MonoBehaviour
             dirrection = 0;
         }
 
-        // Rotate
         if (dirrection == 1)
         {
             transform.localScale = new Vector2(startingXScale, transform.localScale.y);
@@ -92,11 +100,11 @@ public class CharacterAnimation : MonoBehaviour
         // Bob
         if (dirrection != 0)
         {
-            transform.localPosition = new Vector2(transform.localPosition.x, startingY + Mathf.Sin(Time.time * speed) * radius);
+            transform.localPosition = new Vector2(transform.localPosition.x, startingY + Mathf.Sin(Time.time * speed) * size);
         }
         else if (Input.GetKeyDown(upKey) || Input.GetKeyDown(downKey))
         {
-            transform.localPosition = new Vector2(transform.localPosition.x, startingY + Mathf.Sin(Time.time * speed) * radius);
+            transform.localPosition = new Vector2(transform.localPosition.x, startingY + Mathf.Sin(Time.time * speed) * size);
         }
         return dirrection;
     }
