@@ -14,6 +14,7 @@ public class PlayerMovementControler : MonoBehaviour
     MainCamera shook;
     private KeyCode[] hate = { KeyCode.A, KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.E, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.M, KeyCode.N, KeyCode.O, KeyCode.P, KeyCode.Q, KeyCode.R, KeyCode.S, KeyCode.T, KeyCode.U, KeyCode.V, KeyCode.W, KeyCode.X, KeyCode.Y, KeyCode.Z };
     private char[] alphabet = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+    List<int> usedValues = new List<int>();
     public bool typing = false;
 
     void Start()
@@ -35,6 +36,13 @@ public class PlayerMovementControler : MonoBehaviour
             myRB.velocity = direction * speed;
         }
 
+        //stops all player movement when typing
+        if (typing) 
+        {
+            myRB.velocity = Vector2.zero;
+            UserTyping();
+        }
+
         //Text Input
         if (!typing && Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -45,11 +53,6 @@ public class PlayerMovementControler : MonoBehaviour
             typing = false;
         }
         //switch to typing mode
-        if (typing) 
-        {
-            myRB.velocity = Vector2.zero;
-            UserTyping();
-        }
 
 
     }
@@ -78,7 +81,7 @@ public class PlayerMovementControler : MonoBehaviour
                     }
                 }
             }
-            //space pressed
+            //space/return pressed
             if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
             {
                 //is the word finished (correctly)
@@ -86,7 +89,7 @@ public class PlayerMovementControler : MonoBehaviour
                 {
                     //clears the typed string
                     GameManager.Typed = "";
-                    GameManager.Word = GameManager.possible[Random.Range(0, GameManager.possible.Length)];
+                    GameManager.Word = GameManager.possible[UniqueRandomInt(0, GameManager.possible.Length)];
                 }
                 //if not then shake screen (but don't remove characters)
                 else
@@ -95,7 +98,8 @@ public class PlayerMovementControler : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Escape))
+        //clears text if backspace, or escape is pressed
+        if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Escape))
         {
             GameManager.Typed = "";
         }
@@ -125,8 +129,23 @@ public class PlayerMovementControler : MonoBehaviour
         {
             dir = 0;
         }
-
-
         return dir;
+    }
+    //gets non-repeating random value
+    public int UniqueRandomInt(int min, int max)
+    {
+        //clears used values once we've used all of the values in the range
+        if (usedValues.Count >= max) {
+            usedValues.Clear();
+        }
+        int val;
+        //repeats until no repeat values
+        do
+        {
+            val = Random.Range(min, max);
+        } while(usedValues.Contains(val));
+        //adds value to used values list
+        usedValues.Add(val);
+        return val;
     }
 }

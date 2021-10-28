@@ -20268,6 +20268,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3260381423319033777, guid: 05956d07226161e409132c092de45532, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3260381423319033777, guid: 05956d07226161e409132c092de45532, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3260381423536100474, guid: 05956d07226161e409132c092de45532, type: 3}
       propertyPath: m_SizeDelta.x
       value: 148
