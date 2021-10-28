@@ -101,10 +101,10 @@ MonoBehaviour:
   - {x: 5, y: 0, z: 0}
   PaceSpeed: 0
   CurrentPoint: 0
-  ChaseSpeed: 10
-  CloseEnough: 10
+  ChaseSpeed: 23
+  CloseEnough: 0
   ChaseDist: 99999
-  Target: {fileID: 0}
+  Target: {fileID: 5427796206633025629, guid: 37ebee770abe14d459df8ee4cbd454f0, type: 3}
 --- !u!50 &672626386410449012
 Rigidbody2D:
   serializedVersion: 4

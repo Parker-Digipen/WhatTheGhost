@@ -11,18 +11,17 @@ public class PlayerMovementControler : MonoBehaviour
     private Vector2 direction = Vector3.zero;
     public float speed;
     Rigidbody2D myRB;
-    SpriteRenderer mySR;
-    // Start is called before the first frame update
+    MainCamera shook;
     private KeyCode[] hate = { KeyCode.A, KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.E, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.M, KeyCode.N, KeyCode.O, KeyCode.P, KeyCode.Q, KeyCode.R, KeyCode.S, KeyCode.T, KeyCode.U, KeyCode.V, KeyCode.W, KeyCode.X, KeyCode.Y, KeyCode.Z };
-    private string[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-    private bool typing = false;
-    int charIndex = 0;
+    private char[] alphabet = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+    List<int> usedValues = new List<int>();
+    public bool typing = false;
 
     void Start()
     {
         //gets rigid body attached to sprite
         myRB = GetComponent<Rigidbody2D>();
-        mySR = GetComponent<SpriteRenderer>();
+        shook = FindObjectOfType<MainCamera>();
     }
 
     // Update is called once per frame
@@ -37,6 +36,13 @@ public class PlayerMovementControler : MonoBehaviour
             myRB.velocity = direction * speed;
         }
 
+        //stops all player movement when typing
+        if (typing) 
+        {
+            myRB.velocity = Vector2.zero;
+            UserTyping();
+        }
+
         //Text Input
         if (!typing && Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -47,8 +53,7 @@ public class PlayerMovementControler : MonoBehaviour
             typing = false;
         }
         //switch to typing mode
-        if (typing)
-            UserTyping();
+
 
     }
 
@@ -56,19 +61,53 @@ public class PlayerMovementControler : MonoBehaviour
     {
         for (int i = 0; i <= hate.Length - 1; i++)
         {
+            //did they press a key
             if (Input.GetKeyDown(hate[i]))
             {
-                GameManager.Typed += alphabet[i];
-                charIndex++;
+                //
+                if (GameManager.Typed.Length < GameManager.Word.Length) {
+                    //checks if character is in that spot of the word
+                    if (GameManager.Word[GameManager.Typed.Length] == alphabet[i]) {
+                        GameManager.Typed += alphabet[i];
+                    }
+                    //if not, shake and remove character from end
+                    else
+                    {
+                        shook.TriggerShake(0.1f, 0.25f);
+                        //trims the end of typed
+                        if (GameManager.Typed.Length > 0) {
+                            GameManager.Typed = GameManager.Typed.TrimEnd(GameManager.Typed[GameManager.Typed.Length - 1]);
+                        }
+                    }
+                }
+            }
+            //space/return pressed
+            if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+            {
+                //is the word finished (correctly)
+                if (GameManager.Typed.Length == GameManager.Word.Length)
+                {
+                    //clears the typed string
+                    GameManager.Typed = "";
+                    GameManager.Word = GameManager.possible[UniqueRandomInt(0, GameManager.possible.Length)];
+                }
+                //if not then shake screen (but don't remove characters)
+                else
+                {
+                    shook.TriggerShake(0.1f, 0.1f);
+                }
             }
         }
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Escape))
+        //clears text if backspace, or escape is pressed
+        if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Escape))
         {
             GameManager.Typed = "";
         }
+
     }
     private int LastKey(KeyCode negative, KeyCode positive)
     {
+        //gets last key pressed for player movement
         int dir = 0;
         if (Input.GetKeyDown(negative))
         {
@@ -90,16 +129,23 @@ public class PlayerMovementControler : MonoBehaviour
         {
             dir = 0;
         }
-
-        if(!mySR.flipX && Input.GetKeyDown(right)) 
-        {
-            mySR.flipX = true;
-        }
-        else if(mySR.flipX && Input.GetKeyDown(left)) 
-        {
-            mySR.flipX = false;
-        }
-
         return dir;
+    }
+    //gets non-repeating random value
+    public int UniqueRandomInt(int min, int max)
+    {
+        //clears used values once we've used all of the values in the range
+        if (usedValues.Count >= max) {
+            usedValues.Clear();
+        }
+        int val;
+        //repeats until no repeat values
+        do
+        {
+            val = Random.Range(min, max);
+        } while(usedValues.Contains(val));
+        //adds value to used values list
+        usedValues.Add(val);
+        return val;
     }
 }
