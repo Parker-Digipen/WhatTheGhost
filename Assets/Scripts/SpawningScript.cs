@@ -8,10 +8,12 @@ public class SpawningScript : MonoBehaviour
     public float timer = 2f;
     float timerperm = 0;
     public int wave = 3;
+    public bool startwave = false;
     // Start is called before the first frame update
     void Start()
     {
         timerperm = timer;
+        startwave = true;
     }
 
     // Update is called once per frame
@@ -20,9 +22,12 @@ public class SpawningScript : MonoBehaviour
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
-            for (int i = wave; i < wave; i++)
+            for (int i = 0; i < wave; i++)
             {
-                SpawnWave(i);
+                if (startwave == true)
+                {
+                    SpawnWave(i);
+                }
                 timer = timerperm;
             }
         }
