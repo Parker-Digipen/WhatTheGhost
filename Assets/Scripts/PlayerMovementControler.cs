@@ -11,6 +11,7 @@ public class PlayerMovementControler : MonoBehaviour
     private Vector2 direction = Vector3.zero;
     public float speed;
     Rigidbody2D myRB;
+    MainCamera shook;
     private KeyCode[] hate = { KeyCode.A, KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.E, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.M, KeyCode.N, KeyCode.O, KeyCode.P, KeyCode.Q, KeyCode.R, KeyCode.S, KeyCode.T, KeyCode.U, KeyCode.V, KeyCode.W, KeyCode.X, KeyCode.Y, KeyCode.Z };
     private char[] alphabet = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
     private bool typing = false;
@@ -19,6 +20,7 @@ public class PlayerMovementControler : MonoBehaviour
     {
         //gets rigid body attached to sprite
         myRB = GetComponent<Rigidbody2D>();
+        shook = FindObjectOfType<MainCamera>();
     }
 
     // Update is called once per frame
@@ -52,10 +54,32 @@ public class PlayerMovementControler : MonoBehaviour
     {
         for (int i = 0; i <= hate.Length - 1; i++)
         {
+            //did they press a key
             if (Input.GetKeyDown(hate[i]))
             {
-                if (GameManager.Word[GameManager.Typed.Length] == alphabet[i]) {
-                    GameManager.Typed += alphabet[i];
+                //
+                if (GameManager.Typed.Length < GameManager.Word.Length) {
+                    //checks if character is in that spot of the word
+                    if (GameManager.Word[GameManager.Typed.Length] == alphabet[i]) {
+                        GameManager.Typed += alphabet[i];
+                    }
+                    //if not, shake and remove character from end
+                    else
+                    {
+                        shook.TriggerShake(0.1f, 0.5f);
+                        //trims the end of typed
+                        if (GameManager.Typed.Length > 0) {
+                            GameManager.Typed = GameManager.Typed.TrimEnd(GameManager.Typed[GameManager.Typed.Length - 1]);
+                        }
+                    }
+                }
+            }
+            //word finished correctly
+            if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+            {
+                if (GameManager.Typed.Length == GameManager.Word.Length)
+                {
+                    GameManager.Typed = "";
                 }
             }
         }
