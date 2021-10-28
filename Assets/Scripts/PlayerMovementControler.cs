@@ -86,6 +86,7 @@ public class PlayerMovementControler : MonoBehaviour
                 {
                     //clears the typed string
                     GameManager.Typed = "";
+                    GameManager.Word = GameManager.possible[Random.Range(0, GameManager.possible.Length)];
                 }
                 //if not then shake screen (but don't remove characters)
                 else

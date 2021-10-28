@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
 {
     private static string _word = "TEXT";
     private static string _typed = "";
+    public static string[] possible = {"SUSSY", "BAKA", "IMPOSTER", "AMONG"};
     public static UnityEvent onWordChange = new UnityEvent();
-    
     public static UnityEvent onTyped = new UnityEvent();
 
     public static string Word
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-        public static string Typed
+    public static string Typed
     {
         get
         {
