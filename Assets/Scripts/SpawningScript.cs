@@ -20,7 +20,7 @@ public class SpawningScript : MonoBehaviour
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
-            for (int i = wave; i < wave; i++)
+            for (int i = 0; i < wave; i++)
             {
                 SpawnWave(i);
                 timer = timerperm;
