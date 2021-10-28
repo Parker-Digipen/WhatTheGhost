@@ -1,13 +1,3 @@
-//------------------------------------------------------------------------------
-//
-// File Name:	CharacterAnimation.cs
-// Author(s):	Gavin Cooper (gavin.cooper@digipen.edu)
-// Project:	    Fun
-// Course:	    WANIC VGP2
-//
-// Copyright © 2021 DigiPen (USA) Corporation.
-//
-//------------------------------------------------------------------------------
 
 using System.Collections;
 using System.Collections.Generic;
@@ -15,7 +5,7 @@ using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
 {
-    [Tooltip("The radi")]
+    [Tooltip("The amount deviated from center")]
     public float size = 1;
     [Tooltip("The speed")]
     public float speed = 1;
@@ -50,9 +40,12 @@ public class CharacterAnimation : MonoBehaviour
         thingDo(downKey, upKey);
         if(myPlayer.typing)
         {
-            transform.localPosition = new Vector2(transform.localPosition.x, startingY + Mathf.Sin(Time.time * speed) * size * 0.25f);
+            transform.localPosition = new Vector2(startingX + Mathf.Cos(Time.time * speed) * size * 0.25f, startingY + Mathf.Sin(Time.time * speed) * size * 0.25f);
         }
-
+        if(Input.GetKeyDown(KeyCode.LeftShift)) 
+        {
+            transform.localPosition = new Vector2(startingX, startingY);
+        }
     }
     private int thingDo(KeyCode negative, KeyCode positive)
     {

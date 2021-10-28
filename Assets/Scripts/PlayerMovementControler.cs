@@ -45,8 +45,12 @@ public class PlayerMovementControler : MonoBehaviour
             typing = false;
         }
         //switch to typing mode
-        if (typing)
+        if (typing) 
+        {
+            myRB.velocity = Vector2.zero;
             UserTyping();
+        }
+
 
     }
 
