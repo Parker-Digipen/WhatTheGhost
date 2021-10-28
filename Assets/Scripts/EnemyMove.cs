@@ -25,6 +25,7 @@ public class EnemyMove : MonoBehaviour
     void Start()
     {
         myRb = GetComponent<Rigidbody2D>();
+        Target = GameObject.FindGameObjectWithTag("Kirito");
     }
 
     // Update is called once per frame
