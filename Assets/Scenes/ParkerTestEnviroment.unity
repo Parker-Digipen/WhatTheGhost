@@ -20224,6 +20224,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3260381422193238212, guid: 05956d07226161e409132c092de45532, type: 3}
+      propertyPath: word
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3260381422193238213, guid: 05956d07226161e409132c092de45532, type: 3}
       propertyPath: m_SizeDelta.x
       value: 148
