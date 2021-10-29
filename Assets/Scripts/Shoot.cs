@@ -22,9 +22,9 @@ public class Shoot : MonoBehaviour
         }
         if (DestroyOnCollide)
         {
-
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -57,19 +57,20 @@ public class Shoot : MonoBehaviour
             {
                 Grim.OnDeath.Invoke();
             }
+            FindObjectOfType<MainCamera>().TriggerShake(0.1f, 0.1f);
             Destroy(gameObject);
         }
     }
 
     void Start()
     {
-        
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        target = GameObject.FindWithTag("EnemyTwo").transform;
         Vector2 direction = (Vector2)target.position - rigidBody.position;
         direction.Normalize();
         float rotateAmount = Vector3.Cross(direction, transform.up).z;
@@ -89,6 +90,6 @@ public class Shoot : MonoBehaviour
     }
     private void Update()
     {
-        target = GameObject.FindWithTag("EnemyTwo").transform;
+            target = GameObject.FindWithTag("EnemyTwo").transform;
     }
 }

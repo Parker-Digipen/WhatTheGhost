@@ -6,13 +6,14 @@ using TMPro;
 public class HighlightText : MonoBehaviour
 {
     public TMP_Text word;
-    private BaseText baseWord;
+    public BaseText baseWord;
 
     // Start is called before the first frame update
     void Start()
     {
         word = GetComponent<TMP_Text>();
         baseWord = FindObjectOfType<BaseText>();
+        
         ChangeText();
         GameManager.onTyped.AddListener(ChangeText);
     }
