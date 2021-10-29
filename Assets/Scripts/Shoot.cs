@@ -68,6 +68,7 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        target = GameObject.FindWithTag("EnemyTwo").transform;
         Vector2 direction = (Vector2)target.position - rigidBody.position;
         direction.Normalize();
         float rotateAmount = Vector3.Cross(direction, transform.up).z;
@@ -88,5 +89,6 @@ public class Shoot : MonoBehaviour
     private void Update()
     {
             target = GameObject.FindWithTag("EnemyTwo").transform;
+            print(target.name);
     }
 }

@@ -7,9 +7,14 @@ public class GameManager : MonoBehaviour
 {
     private static string _word = "TEXT";
     private static string _typed = "";
+    private static int _enemiesLeft = 0;
+    private static int _playerHealth = 1;
+
     public static string[] possible = {"SUSSY", "BAKA", "IMPOSTER", "AMONG", "AMONGUS", "IN", "REAL", "LIFE", "SUS"};
     public static UnityEvent onWordChange = new UnityEvent();
     public static UnityEvent onTyped = new UnityEvent();
+    public static UnityEvent onEnemy = new UnityEvent();
+    public static UnityEvent onHealth = new UnityEvent();
 
     public static string Word
     {
@@ -34,6 +39,32 @@ public class GameManager : MonoBehaviour
         {
             _typed = value;
             onTyped.Invoke();
+        }
+    }
+
+    public static int PlayerHP
+    {
+        get
+        {
+            return _playerHealth;
+        }
+        set
+        {
+            _playerHealth = value;
+            onHealth.Invoke();
+        }
+    }
+
+    public static int EnemyCount
+    {
+        get
+        {
+            return _enemiesLeft;
+        }
+        set
+        {
+            _enemiesLeft = value;
+            onEnemy.Invoke();
         }
     }
 
