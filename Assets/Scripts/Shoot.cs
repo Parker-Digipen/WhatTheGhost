@@ -22,9 +22,8 @@ public class Shoot : MonoBehaviour
         }
         if (DestroyOnCollide)
         {
-
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -88,6 +87,15 @@ public class Shoot : MonoBehaviour
     }
     private void Update()
     {
-        target = GameObject.FindWithTag("EnemyTwo").transform;
+        try
+        {
+            target = GameObject.FindWithTag("EnemyTwo").transform;
+        }
+        catch
+        {
+            print("yeet");
+        }
+
+
     }
 }
