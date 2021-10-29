@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -546220265
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 11
   m_Sprite: {fileID: 21300080, guid: e48ddf4fb7304ce4ab48711eb6617a57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -152,7 +152,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1807552123
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300092, guid: e48ddf4fb7304ce4ab48711eb6617a57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -236,7 +236,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -959299217
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 11
   m_Sprite: {fileID: 21300032, guid: e48ddf4fb7304ce4ab48711eb6617a57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -262,6 +262,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MC: {fileID: 4896458935917790993}
   Rb: {fileID: 4896458935917790995}
+  timer: 0
+  Test: {fileID: 0}
 --- !u!61 &2763351325035570693
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -301,7 +303,7 @@ GameObject:
   - component: {fileID: 4896458935917790995}
   m_Layer: 0
   m_Name: EnemyLoser
-  m_TagString: Untagged
+  m_TagString: EnemyTwo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -436,7 +438,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -959299217
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 12
   m_Sprite: {fileID: 21300016, guid: e48ddf4fb7304ce4ab48711eb6617a57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
