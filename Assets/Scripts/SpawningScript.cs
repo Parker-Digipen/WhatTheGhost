@@ -35,7 +35,7 @@ public class SpawningScript : MonoBehaviour
 
     public void SpawnWave(int amount)
     {
-            Vector3 spawnpos = Vector3.zero;
+            Vector3 spawnpos = new Vector3(Random.Range(1,10),Random.Range(1,10),0);
             Instantiate(enemy,spawnpos,transform.rotation);
     }
 }
