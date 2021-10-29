@@ -77,6 +77,6 @@ public class EnemyMove : MonoBehaviour
     void Chase(Vector2 direction)
     {
         Vector2 acceleration = direction.normalized * ChaseSpeed * Time.fixedDeltaTime;
-                myRb.velocity = acceleration;
+        myRb.velocity = acceleration;
     }
 }

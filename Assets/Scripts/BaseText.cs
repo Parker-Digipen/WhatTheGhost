@@ -11,6 +11,7 @@ public class BaseText : MonoBehaviour
     void Start()
     {
         word = GetComponent<TMP_Text>();
+
         ChangeText();
         GameManager.onWordChange.AddListener(ChangeText);
     }
