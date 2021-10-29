@@ -24,6 +24,7 @@ public class Shoot : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -56,6 +57,7 @@ public class Shoot : MonoBehaviour
             {
                 Grim.OnDeath.Invoke();
             }
+            FindObjectOfType<MainCamera>().TriggerShake(0.1f, 0.1f);
             Destroy(gameObject);
         }
     }
@@ -89,6 +91,5 @@ public class Shoot : MonoBehaviour
     private void Update()
     {
             target = GameObject.FindWithTag("EnemyTwo").transform;
-            print(target.name);
     }
 }

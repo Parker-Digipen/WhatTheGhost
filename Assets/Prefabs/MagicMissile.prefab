@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2330958483389892527}
   - component: {fileID: 2330958483389892520}
   - component: {fileID: 2330958483389892524}
+  - component: {fileID: 2451545065585019037}
+  - component: {fileID: 2177636790715051723}
   m_Layer: 0
   m_Name: MagicMissile
   m_TagString: Untagged
@@ -73,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 0.11356357, g: 0.30393746, b: 0.8301887, a: 0.44705883}
   m_FlipX: 0
@@ -140,3 +142,32 @@ MonoBehaviour:
   target: {fileID: 0}
   angleChangingSpeed: 1000
   movementSpeed: 25
+--- !u!114 &2451545065585019037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2330958483389892522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 523cc074426de664cbd3511ebb57920f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToMake: {fileID: 347004764229816582, guid: c4ba2e00084d56147ba078a70a6a3bf6, type: 3}
+  Offset: {x: 0, y: 0, z: 0}
+  minRandOffset: 0
+  maxRandOffset: 0
+--- !u!114 &2177636790715051723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2330958483389892522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a064b719a9f3ad49bb985ec58e6e598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 1

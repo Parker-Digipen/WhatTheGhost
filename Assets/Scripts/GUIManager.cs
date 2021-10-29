@@ -18,6 +18,6 @@ public class GUIManager : MonoBehaviour
         enemies = GameObject.FindGameObjectsWithTag("EnemyTwo");
         GameManager.EnemyCount = enemies.Length;
 
-        GameManager.PlayerHP = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().CurrentHealth;
+        GameManager.PlayerHP = GameObject.FindGameObjectWithTag("Kirito").GetComponent<Health>().CurrentHealth;
     }
 }

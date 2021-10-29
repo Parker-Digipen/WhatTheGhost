@@ -10,9 +10,11 @@ public class PlayerMovementControler : MonoBehaviour
     private KeyCode down = KeyCode.S;
     private Vector2 direction = Vector3.zero;
     public float speed;
+    public ParticleSystem linger;
     Rigidbody2D myRB;
     MainCamera shook;
     public GameObject pew;
+    public GameObject poof;
     private KeyCode[] hate = { KeyCode.A, KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.E, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.M, KeyCode.N, KeyCode.O, KeyCode.P, KeyCode.Q, KeyCode.R, KeyCode.S, KeyCode.T, KeyCode.U, KeyCode.V, KeyCode.W, KeyCode.X, KeyCode.Y, KeyCode.Z };
     private char[] alphabet = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
     List<int> usedValues = new List<int>();
@@ -23,6 +25,7 @@ public class PlayerMovementControler : MonoBehaviour
         //gets rigid body attached to sprite
         myRB = GetComponent<Rigidbody2D>();
         shook = FindObjectOfType<MainCamera>();
+        linger.Stop();
     }
 
     // Update is called once per frame
@@ -48,10 +51,12 @@ public class PlayerMovementControler : MonoBehaviour
         if (!typing && Input.GetKeyDown(KeyCode.LeftShift))
         {
             typing = true;
+            linger.Play();
         }
         else if (typing && Input.GetKeyDown(KeyCode.LeftShift))
         {
             typing = false;
+            linger.Stop();
         }
         //switch to typing mode
 
@@ -90,8 +95,19 @@ public class PlayerMovementControler : MonoBehaviour
                 {
                     //clears the typed string
                     GameManager.Typed = "";
+                    //sets next word
                     GameManager.Word = GameManager.possible[UniqueRandomInt(0, GameManager.possible.Length)];
-                    GameObject clone = Instantiate(pew, transform.position, transform.rotation);
+                    //checks if enemies left
+                    //if yes, shoot
+                    if(GameManager.EnemyCount > 0) 
+                    {
+                        GameObject clone = Instantiate(pew, transform.position, transform.rotation);
+                    }
+                    //if no, pulse
+                    else 
+                    {
+                        GameObject pulse = Instantiate(poof, transform.position, transform.rotation);
+                    }
 
                 }
                 //if not then shake screen (but don't remove characters)
