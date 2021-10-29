@@ -14,7 +14,6 @@ public class Shoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
