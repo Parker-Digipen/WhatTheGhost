@@ -37,14 +37,14 @@ public class CharacterAnimation : MonoBehaviour
     void Update()
     {
         //get movement direction
-        thingDo(leftKey, rightKey);
+        thingDo();
 
         // Bob
         if (dirrection != 0)
         {
             transform.localPosition = new Vector2(transform.localPosition.x, startingY + Mathf.Sin(Time.time * speed) * size);
         }
-        else if (Input.GetKeyDown(upKey) || Input.GetKeyDown(downKey))
+        else if (Input.GetKey(upKey) || Input.GetKey(downKey))
         {
             transform.localPosition = new Vector2(transform.localPosition.x, startingY + Mathf.Sin(Time.time * speed) * size);
         }
@@ -56,42 +56,41 @@ public class CharacterAnimation : MonoBehaviour
         }
 
         //reset after typing animation
-        
         if(Input.GetKeyDown(KeyCode.LeftShift)) 
         {
             transform.localPosition = new Vector2(startingX, startingY);
         }
     }
-    private int thingDo(KeyCode negative, KeyCode positive)
+    private int thingDo()
     {
         //flips character sprite
-        if (!mySR.flipX && Input.GetKeyDown(positive))
+        if (!mySR.flipX && Input.GetKeyDown(rightKey))
         {
             mySR.flipX = true;
         }
-        else if (mySR.flipX && Input.GetKeyDown(negative))
+        else if (mySR.flipX && Input.GetKeyDown(leftKey))
         {
             mySR.flipX = false;
         }
 
         // Get dirrection
-        if (Input.GetKeyDown(negative) || Input.GetKeyDown(upKey))
+        if (Input.GetKeyDown(leftKey))
         {
             dirrection = -1;
         }
-        else if (Input.GetKey(negative) && !Input.GetKey(positive))
+        else if (Input.GetKey(leftKey) && !Input.GetKey(rightKey))
         {
             dirrection = -1;
         }
-        else if (Input.GetKeyDown(positive) || Input.GetKeyDown(downKey))
+        else if (Input.GetKeyDown(rightKey))
         {
             dirrection = 1;
         }
-        else if (Input.GetKey(positive) && !Input.GetKey(negative))
+        else if (Input.GetKey(rightKey) && !Input.GetKey(leftKey))
         {
             dirrection = 1;
         }
-        else if (!Input.GetKey(negative) && !Input.GetKey(positive))
+        else if (!Input.GetKey(leftKey) && !Input.GetKey(rightKey))
         {
             dirrection = 0;
         }
