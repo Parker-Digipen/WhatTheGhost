@@ -142,6 +142,7 @@ MonoBehaviour:
   target: {fileID: 0}
   angleChangingSpeed: 1000
   movementSpeed: 25
+  tom: EnemyTwo
 --- !u!114 &2451545065585019037
 MonoBehaviour:
   m_ObjectHideFlags: 0

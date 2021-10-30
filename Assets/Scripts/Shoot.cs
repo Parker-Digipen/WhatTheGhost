@@ -11,6 +11,7 @@ public class Shoot : MonoBehaviour
     private Rigidbody2D rigidBody;
     public float angleChangingSpeed;
     public float movementSpeed;
+    public string tom;
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -70,7 +71,7 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        target = GameObject.FindWithTag("EnemyTwo").transform;
+        target = GameObject.FindWithTag(tom).transform;
         Vector2 direction = (Vector2)target.position - rigidBody.position;
         direction.Normalize();
         float rotateAmount = Vector3.Cross(direction, transform.up).z;
