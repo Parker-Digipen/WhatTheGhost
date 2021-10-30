@@ -5,8 +5,8 @@ using UnityEngine;
 public class GUIManager : MonoBehaviour
 {
     GameObject[] enemies;
-    public string playerTag;
-    public string enemyTag;
+    public string playerTag = "Kirito";
+    public string enemyTag = "EnemyTwo";
 
     // Start is called before the first frame update
     void Start()

@@ -11,7 +11,7 @@ public class Shoot : MonoBehaviour
     private Rigidbody2D rigidBody;
     public float angleChangingSpeed;
     public float movementSpeed;
-    public string tom;
+    public string tom = "EnemyTwo";
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
