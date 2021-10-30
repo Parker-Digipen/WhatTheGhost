@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerMovementControler : MonoBehaviour
 {
+    [Tooltip("Camera will follow this object")]
+    public GameObject Target;
+    [Tooltip("Set between 0 and 1 for best results")]
+    public float LerpVal = 0.05f;
+    float ShakeTime = 3;
+    float ShakeAmount = 3;
     private KeyCode left = KeyCode.A;
     private KeyCode right = KeyCode.D;
     private KeyCode up = KeyCode.W;
@@ -19,6 +25,7 @@ public class PlayerMovementControler : MonoBehaviour
     private char[] alphabet = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
     List<int> usedValues = new List<int>();
     public bool typing = false;
+
 
     void Start()
     {
@@ -59,8 +66,6 @@ public class PlayerMovementControler : MonoBehaviour
             linger.Stop();
         }
         //switch to typing mode
-
-
     }
 
     private void UserTyping()
@@ -166,5 +171,31 @@ public class PlayerMovementControler : MonoBehaviour
         //adds value to used values list
         usedValues.Add(val);
         return val;
+    }
+
+    public void loser()
+    {
+        if (ShakeTime > 0)
+        {
+            ShakeTime -= Time.deltaTime;
+            Vector3 randDir = Random.insideUnitCircle * ShakeAmount;
+            transform.position += randDir;
+
+        }
+        else
+        {
+            ShakeAmount = 0;
+        }
+    }
+    public void TriggerShake(float time, float amount)
+    {
+        if (ShakeTime < time)
+        {
+            ShakeTime = time;
+        }
+        if (ShakeAmount < amount)
+        {
+            ShakeAmount = amount;
+        }
     }
 }
