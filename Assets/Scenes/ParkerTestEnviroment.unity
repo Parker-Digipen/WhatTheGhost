@@ -21346,6 +21346,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d0c69536debb3247b6010c71393a226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTag: Kirito
+  enemyTag: EnemyTwo
 --- !u!1001 &3350443765877329113
 PrefabInstance:
   m_ObjectHideFlags: 0

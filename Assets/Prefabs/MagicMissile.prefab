@@ -142,6 +142,7 @@ MonoBehaviour:
   target: {fileID: 0}
   angleChangingSpeed: 1000
   movementSpeed: 25
+  tom: EnemyTwo
 --- !u!114 &2451545065585019037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,4 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a064b719a9f3ad49bb985ec58e6e598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 1
+  life: 0.5
