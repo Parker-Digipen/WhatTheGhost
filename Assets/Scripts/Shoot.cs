@@ -91,6 +91,6 @@ public class Shoot : MonoBehaviour
     }
     private void Update()
     {
-            target = GameObject.FindWithTag("EnemyTwo").transform;
+            target = GameObject.FindWithTag(tom).transform;
     }
 }
