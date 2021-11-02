@@ -45,21 +45,23 @@ public class Shoot : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //make sure there is health component
-        Health h = collision.GetComponent<Health>();
-        if (h != null)
-        {
-            h.ChangeHealth(-Amount);
-        }
-        if (DestroyOnCollide)
-        {
-            Death Grim = GetComponent<Death>();
-            if (Grim != null)
+        if (collision.CompareTag(tom)) {
+            //make sure there is health component
+            Health h = collision.GetComponent<Health>();
+            if (h != null)
             {
-                Grim.OnDeath.Invoke();
+                h.ChangeHealth(-Amount);
             }
-            FindObjectOfType<MainCamera>().TriggerShake(0.1f, 0.1f);
-            Destroy(gameObject);
+            if (DestroyOnCollide)
+            {
+                Death Grim = GetComponent<Death>();
+                if (Grim != null)
+                {
+                    Grim.OnDeath.Invoke();
+                }
+                FindObjectOfType<MainCamera>().TriggerShake(0.1f, 0.1f);
+                Destroy(gameObject);
+            }
         }
     }
 

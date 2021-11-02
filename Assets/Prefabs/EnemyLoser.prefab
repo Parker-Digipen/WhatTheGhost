@@ -5067,7 +5067,7 @@ MonoBehaviour:
   MC: {fileID: 4896458935917790993}
   secondMC: {fileID: 0}
   Rb: {fileID: 4896458935917790995}
-  timer: 0
+  timer: 1
   Test: {fileID: 0}
   trashsystem: 1
   RedOverlay: {fileID: 0}
@@ -5079,10 +5079,10 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4896364995076589457}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.01246357, y: -0.7158117}
@@ -5158,7 +5158,7 @@ MonoBehaviour:
   CurrentPoint: 0
   ChaseSpeed: 75
   CloseEnough: 0
-  ChaseDist: 25
+  ChaseDist: 15
   Target: {fileID: 5542377487475558235, guid: 6b91d6e3fc2150143b8c2341364fe3fd, type: 3}
 --- !u!114 &2753704690706456529
 MonoBehaviour:

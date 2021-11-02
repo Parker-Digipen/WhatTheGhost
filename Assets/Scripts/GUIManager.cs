@@ -19,7 +19,7 @@ public class GUIManager : MonoBehaviour
     {
         enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         GameManager.EnemyCount = enemies.Length;
-
-        GameManager.PlayerHP = GameObject.FindGameObjectWithTag(playerTag).GetComponent<Health>().CurrentHealth;
+        if(GameObject.FindGameObjectWithTag(playerTag) != null)
+            GameManager.PlayerHP = GameObject.FindGameObjectWithTag(playerTag).GetComponent<Health>().CurrentHealth;
     }
 }
