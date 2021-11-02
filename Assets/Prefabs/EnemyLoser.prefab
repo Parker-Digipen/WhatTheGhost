@@ -5067,6 +5067,7 @@ MonoBehaviour:
   MC: {fileID: 4896458935917790993}
   secondMC: {fileID: 0}
   Rb: {fileID: 4896458935917790995}
+  attackDelay: 2
   timer: 1
   Test: {fileID: 0}
   trashsystem: 1
@@ -5157,9 +5158,9 @@ MonoBehaviour:
   - {x: 5, y: 0, z: 0}
   PaceSpeed: 0
   CurrentPoint: 0
-  ChaseSpeed: 75
-  CloseEnough: 0
-  ChaseDist: 15
+  ChaseSpeed: 85
+  CloseEnough: 2
+  ChaseDist: 20
   Target: {fileID: 5542377487475558235, guid: 6b91d6e3fc2150143b8c2341364fe3fd, type: 3}
 --- !u!114 &2753704690706456529
 MonoBehaviour:
@@ -5205,7 +5206,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4896458935917790993}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 6b483dd8339fa94448be58587f2bbeb0, type: 2}
   m_Animations:

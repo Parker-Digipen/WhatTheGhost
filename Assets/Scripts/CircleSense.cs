@@ -35,24 +35,35 @@ public class CircleSense : MonoBehaviour
     {
         if (timer <= 0)
         {
+            //if the object collided with is player
             if (collision.gameObject.tag == "Kirito")
             {
+                //slow way down
                 Rb.angularDrag += 10000;
                 Rb.drag += 10000;
-                //timer = attackDelay;
-                MC.GetComponent<EnemyMove>().enabled = false;
-                MC.GetComponent<Animator>().enabled = true;
-                secondMC.GetComponent<Health>().CurrentHealth -= 5;
+                
+                //activates animation and stops movment
+                //MC.GetComponent<EnemyMove>().enabled = false;
+                //MC.GetComponent<Animator>().enabled = true;
+                
+                //deal damage
+                //changed from secondMC to collision to fix no damage issue
+                collision.GetComponent<Health>().CurrentHealth -= 5;
             }
+            //?
             if (timer2 <= 0)
             {
+                //?
                 RedOverlay.GetComponent<SpriteRenderer>().enabled = false;
                 timer2 = 0.5f;
             }
+            //if player killed
             if (secondMC.GetComponent<Health>().CurrentHealth <= 0)
             {
+                //switch to end scene
                 SceneManager.LoadScene("Death Screen");
             }
+            //resets attack timer
             timer = attackDelay;
         }
     }
@@ -63,5 +74,4 @@ public class CircleSense : MonoBehaviour
             timer2 -= Time.deltaTime;
         }
     }
-    //call this function to make a screen shake
 }

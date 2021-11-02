@@ -76,17 +76,6 @@ public class Shoot : MonoBehaviour
         distances = new float[targets.Length];
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        target = GameObject.FindWithTag(tom).transform;
-        Vector2 direction = (Vector2)target.position - rigidBody.position;
-        direction.Normalize();
-        float rotateAmount = Vector3.Cross(direction, transform.up).z;
-        rigidBody.angularVelocity = -angleChangingSpeed * rotateAmount;
-        rigidBody.velocity = transform.up * movementSpeed;
-    }
-
     public void Shootie(Vector3 offset)
     {
         //create the object with a position offset and affected by the rotation of the spawner
@@ -101,7 +90,11 @@ public class Shoot : MonoBehaviour
     {
         for (int i = 0; i <= targets.Length - 1; i++)
         {
+            try{
             distances[i] = Vector3.Distance(transform.position, targets[i].transform.position);
+            } catch(MissingReferenceException) {
+                //I just want the error message gone
+            }
         }
         for (int i = 0; i <= targets.Length - 1; i++)
         {
@@ -111,7 +104,14 @@ public class Shoot : MonoBehaviour
                 closestIndex = i;
             }
         }
-
         target = targets[closestIndex].transform;
+        
+        if(target != null) {
+            Vector2 direction = (Vector2)target.position - rigidBody.position;
+            direction.Normalize();
+            float rotateAmount = Vector3.Cross(direction, transform.up).z;
+            rigidBody.angularVelocity = -angleChangingSpeed * rotateAmount;
+            rigidBody.velocity = transform.up * movementSpeed;
+        }
     }
 }
