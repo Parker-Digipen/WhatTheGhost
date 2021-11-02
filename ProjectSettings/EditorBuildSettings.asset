@@ -11,12 +11,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Start Screen.unity
     guid: 749c8d68059303844a9fea20ffcb5a43
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Ryan Test Scene.unity
     guid: 84ac3bc91272d41469f258e462acae21
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ParkerTestEnviroment.unity
     guid: 05c5d07f9584d224db2e0a42f4479b95
+  - enabled: 1
+    path: Assets/Scenes/World.unity
+    guid: 6376fc53256faee418717a7defae3e3a
   - enabled: 1
     path: Assets/Scenes/Death Screen.unity
     guid: bac42ef79958d384ebf7e6ba7db9d481
