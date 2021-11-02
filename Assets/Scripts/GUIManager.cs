@@ -5,6 +5,8 @@ using UnityEngine;
 public class GUIManager : MonoBehaviour
 {
     GameObject[] enemies;
+    public string playerTag = "Kirito";
+    public string enemyTag = "EnemyTwo";
 
     // Start is called before the first frame update
     void Start()
@@ -15,9 +17,9 @@ public class GUIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        enemies = GameObject.FindGameObjectsWithTag("EnemyTwo");
+        enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         GameManager.EnemyCount = enemies.Length;
-
-        GameManager.PlayerHP = GameObject.FindGameObjectWithTag("Kirito").GetComponent<Health>().CurrentHealth;
+        if(GameObject.FindGameObjectWithTag(playerTag) != null)
+            GameManager.PlayerHP = GameObject.FindGameObjectWithTag(playerTag).GetComponent<Health>().CurrentHealth;
     }
 }

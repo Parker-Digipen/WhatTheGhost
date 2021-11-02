@@ -36,68 +36,63 @@ public class CharacterAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        thingDo(leftKey, rightKey);
-        thingDo(downKey, upKey);
-        if(myPlayer.typing)
-        {
-            transform.localPosition = new Vector2(startingX + Mathf.Cos(Time.time * speed) * size * 0.25f, startingY + Mathf.Sin(Time.time * speed) * size * 0.25f);
-        }
-        if(Input.GetKeyDown(KeyCode.LeftShift)) 
-        {
-            transform.localPosition = new Vector2(startingX, startingY);
-        }
-    }
-    private int thingDo(KeyCode negative, KeyCode positive)
-    {
-        //flips character sprite
-        if (!mySR.flipX && Input.GetKeyDown(positive))
-        {
-            mySR.flipX = true;
-        }
-        else if (mySR.flipX && Input.GetKeyDown(negative))
-        {
-            mySR.flipX = false;
-        }
-
-        // Get dirrection
-        if (Input.GetKeyDown(negative) || Input.GetKeyDown(upKey))
-        {
-            dirrection = -1;
-        }
-        else if (Input.GetKey(negative) && !Input.GetKey(positive))
-        {
-            dirrection = -1;
-        }
-        else if (Input.GetKeyDown(positive) || Input.GetKeyDown(downKey))
-        {
-            dirrection = 1;
-        }
-        else if (Input.GetKey(positive) && !Input.GetKey(negative))
-        {
-            dirrection = 1;
-        }
-        else if (!Input.GetKey(negative) && !Input.GetKey(positive))
-        {
-            dirrection = 0;
-        }
-
-        if (dirrection == 1)
-        {
-            transform.localScale = new Vector2(startingXScale, transform.localScale.y);
-        }
-        else if (dirrection == -1)
-        {
-            transform.localScale = new Vector2(startingXScale, transform.localScale.y);
-        }
+        //get movement direction
+        thingDo();
 
         // Bob
         if (dirrection != 0)
         {
             transform.localPosition = new Vector2(transform.localPosition.x, startingY + Mathf.Sin(Time.time * speed) * size);
         }
-        else if (Input.GetKeyDown(upKey) || Input.GetKeyDown(downKey))
+        else if (Input.GetKey(upKey) || Input.GetKey(downKey))
         {
             transform.localPosition = new Vector2(transform.localPosition.x, startingY + Mathf.Sin(Time.time * speed) * size);
+        }
+
+        //typing animation
+        if(myPlayer.typing)
+        {
+            transform.localPosition = new Vector2(startingX + Mathf.Cos(Time.time * speed) * size * 0.25f, startingY + Mathf.Sin(Time.time * speed) * size * 0.25f);
+        }
+
+        //reset after typing animation
+        if(Input.GetKeyDown(KeyCode.LeftShift)) 
+        {
+            transform.localPosition = new Vector2(startingX, startingY);
+        }
+    }
+    private int thingDo()
+    {
+        //flips character sprite
+        if (!mySR.flipX && Input.GetKeyDown(rightKey))
+        {
+            mySR.flipX = true;
+        }
+        else if (mySR.flipX && Input.GetKeyDown(leftKey))
+        {
+            mySR.flipX = false;
+        }
+
+        // Get dirrection
+        if (Input.GetKeyDown(leftKey))
+        {
+            dirrection = -1;
+        }
+        else if (Input.GetKey(leftKey) && !Input.GetKey(rightKey))
+        {
+            dirrection = -1;
+        }
+        else if (Input.GetKeyDown(rightKey))
+        {
+            dirrection = 1;
+        }
+        else if (Input.GetKey(rightKey) && !Input.GetKey(leftKey))
+        {
+            dirrection = 1;
+        }
+        else if (!Input.GetKey(leftKey) && !Input.GetKey(rightKey))
+        {
+            dirrection = 0;
         }
         return dirrection;
     }

@@ -254,12 +254,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8313073742365193265}
+  - component: {fileID: 1751960159382808851}
   - component: {fileID: 8313073742365193278}
   - component: {fileID: 8313073742365193276}
   - component: {fileID: 8313073742365193279}
   - component: {fileID: 8313073742365193264}
   - component: {fileID: 6641522363194299512}
   - component: {fileID: 6641522363194299513}
+  - component: {fileID: 1570255075024479346}
   m_Layer: 0
   m_Name: Player
   m_TagString: Kirito
@@ -284,6 +286,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1751960159382808851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8313073742365193277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd3b32e163ec724eb41d689de4d3641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHealth: 10
+  MaxHealth: 10
+  DestroyAtZero: 1
+  InvincTime: 0
 --- !u!50 &8313073742365193278
 Rigidbody2D:
   serializedVersion: 4
@@ -5139,6 +5157,14 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!81 &1570255075024479346
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8313073742365193277}
+  m_Enabled: 1
 --- !u!1 &8313073742412861798
 GameObject:
   m_ObjectHideFlags: 0

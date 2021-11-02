@@ -13,12 +13,13 @@ public class PlayerMovementControler : MonoBehaviour
     public ParticleSystem linger;
     Rigidbody2D myRB;
     MainCamera shook;
-    public GameObject pew;
-    public GameObject poof;
+    public GameObject pew; //player projectile
+    public GameObject poof; //player poof when can't shoot
     private KeyCode[] hate = { KeyCode.A, KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.E, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.M, KeyCode.N, KeyCode.O, KeyCode.P, KeyCode.Q, KeyCode.R, KeyCode.S, KeyCode.T, KeyCode.U, KeyCode.V, KeyCode.W, KeyCode.X, KeyCode.Y, KeyCode.Z };
     private char[] alphabet = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
     List<int> usedValues = new List<int>();
     public bool typing = false;
+
 
     void Start()
     {
@@ -59,8 +60,6 @@ public class PlayerMovementControler : MonoBehaviour
             linger.Stop();
         }
         //switch to typing mode
-
-
     }
 
     private void UserTyping()
