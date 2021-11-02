@@ -8,6 +8,7 @@ public class CircleSense : MonoBehaviour
     public GameObject MC;
     public GameObject secondMC;
     public Rigidbody2D Rb;
+    public float attackDelay;
     public float timer;
     public GameObject Test;
     public bool trashsystem = true;
@@ -21,43 +22,49 @@ public class CircleSense : MonoBehaviour
         secondMC = GameObject.FindGameObjectWithTag("Kirito");
         RedOverlay = GameObject.FindGameObjectWithTag("Loser");
         MC.GetComponent<Animator>().enabled = false;
-        timer += 100;
+        timer = attackDelay;
     }
+    
 
     // Update is called once per frame
     void Update()
     {
-        if(timer >= 0 && Rb.angularDrag >= 9999)
+        timer -= Time.deltaTime;
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (timer <= 0)
         {
-            timer -= Time.deltaTime;
-        }
-        if(timer <= 0)
-        {
-            //dodamagehere
-            secondMC.GetComponent<Health>().CurrentHealth -= 5;
-            RedOverlay.GetComponent<SpriteRenderer>().enabled = true;
-            secondMC.SendMessage("loser");
+            //if the object collided with is player
+            if (collision.gameObject.tag == "Kirito")
+            {
+                //slow way down
+                Rb.angularDrag += 10000;
+                Rb.drag += 10000;
+                
+                //activates animation and stops movment
+                //MC.GetComponent<EnemyMove>().enabled = false;
+                //MC.GetComponent<Animator>().enabled = true;
+                
+                //deal damage
+                //changed from secondMC to collision to fix no damage issue
+                collision.GetComponent<Health>().CurrentHealth -= 5;
+            }
+            //?
             if (timer2 <= 0)
             {
+                //?
                 RedOverlay.GetComponent<SpriteRenderer>().enabled = false;
                 timer2 = 0.5f;
             }
-            timer = 5;
+            //if player killed
             if (secondMC.GetComponent<Health>().CurrentHealth <= 0)
-                    {
+            {
+                //switch to end scene
                 SceneManager.LoadScene("Death Screen");
-                    }
-        }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Kirito")
-        {
-            Rb.angularDrag += 10000;
-            Rb.drag += 10000;
-            timer = 5;
-            MC.GetComponent<EnemyMove>().enabled = false;
-            MC.GetComponent<Animator>().enabled = true;
+            }
+            //resets attack timer
+            timer = attackDelay;
         }
     }
     public void loser()
@@ -67,5 +74,4 @@ public class CircleSense : MonoBehaviour
             timer2 -= Time.deltaTime;
         }
     }
-    //call this function to make a screen shake
 }

@@ -498,6 +498,7 @@ GameObject:
   - component: {fileID: 2051760981}
   - component: {fileID: 2051760980}
   - component: {fileID: 2051760982}
+  - component: {fileID: 2051760983}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -584,6 +585,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   LerpVal: 0.5
+--- !u!114 &2051760983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051760978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d0c69536debb3247b6010c71393a226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTag: Kirito
+  enemyTag: EnemyTwo
 --- !u!114 &1751960159552984582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,6 +943,7 @@ GameObject:
   - component: {fileID: 2763433443441370758}
   - component: {fileID: 7325675882011301849}
   - component: {fileID: 7325675882011301842}
+  - component: {fileID: 2763433443441370759}
   m_Layer: 0
   m_Name: Chara_03
   m_TagString: EnemyTwo
@@ -977,6 +993,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &2763433443441370759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2763433443441370756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd3b32e163ec724eb41d689de4d3641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHealth: 10
+  MaxHealth: 10
+  DestroyAtZero: 1
+  InvincTime: 0
 --- !u!1 &2763661456500530532
 GameObject:
   m_ObjectHideFlags: 0
@@ -1023,8 +1055,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bd3b32e163ec724eb41d689de4d3641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 10
-  MaxHealth: 10
+  CurrentHealth: 3
+  MaxHealth: 3
   DestroyAtZero: 1
   InvincTime: 0
 --- !u!61 &4896364995076589456

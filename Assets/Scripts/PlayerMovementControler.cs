@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class PlayerMovementControler : MonoBehaviour
 {
-    [Tooltip("Camera will follow this object")]
-    public GameObject Target;
-    [Tooltip("Set between 0 and 1 for best results")]
-    public float LerpVal = 0.05f;
-    float ShakeTime = 3;
-    float ShakeAmount = 3;
     private KeyCode left = KeyCode.A;
     private KeyCode right = KeyCode.D;
     private KeyCode up = KeyCode.W;
@@ -19,8 +13,8 @@ public class PlayerMovementControler : MonoBehaviour
     public ParticleSystem linger;
     Rigidbody2D myRB;
     MainCamera shook;
-    public GameObject pew;
-    public GameObject poof;
+    public GameObject pew; //player projectile
+    public GameObject poof; //player poof when can't shoot
     private KeyCode[] hate = { KeyCode.A, KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.E, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.M, KeyCode.N, KeyCode.O, KeyCode.P, KeyCode.Q, KeyCode.R, KeyCode.S, KeyCode.T, KeyCode.U, KeyCode.V, KeyCode.W, KeyCode.X, KeyCode.Y, KeyCode.Z };
     private char[] alphabet = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
     List<int> usedValues = new List<int>();
@@ -171,31 +165,5 @@ public class PlayerMovementControler : MonoBehaviour
         //adds value to used values list
         usedValues.Add(val);
         return val;
-    }
-
-    public void loser()
-    {
-        if (ShakeTime > 0)
-        {
-            ShakeTime -= Time.deltaTime;
-            Vector3 randDir = Random.insideUnitCircle * ShakeAmount;
-            transform.position += randDir;
-
-        }
-        else
-        {
-            ShakeAmount = 0;
-        }
-    }
-    public void TriggerShake(float time, float amount)
-    {
-        if (ShakeTime < time)
-        {
-            ShakeTime = time;
-        }
-        if (ShakeAmount < amount)
-        {
-            ShakeAmount = amount;
-        }
     }
 }

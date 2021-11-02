@@ -11,6 +11,11 @@ public class Shoot : MonoBehaviour
     private Rigidbody2D rigidBody;
     public float angleChangingSpeed;
     public float movementSpeed;
+    public string tom = "EnemyTwo";
+    GameObject[] targets;
+    float[] distances;
+    float closest = 500000;
+    int closestIndex;
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -44,38 +49,31 @@ public class Shoot : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //make sure there is health component
-        Health h = collision.GetComponent<Health>();
-        if (h != null)
-        {
-            h.ChangeHealth(-Amount);
-        }
-        if (DestroyOnCollide)
-        {
-            Death Grim = GetComponent<Death>();
-            if (Grim != null)
+        if (collision.CompareTag(tom)) {
+            //make sure there is health component
+            Health h = collision.GetComponent<Health>();
+            if (h != null)
             {
-                Grim.OnDeath.Invoke();
+                h.ChangeHealth(-Amount);
             }
-            FindObjectOfType<MainCamera>().TriggerShake(0.1f, 0.1f);
-            Destroy(gameObject);
+            if (DestroyOnCollide)
+            {
+                Death Grim = GetComponent<Death>();
+                if (Grim != null)
+                {
+                    Grim.OnDeath.Invoke();
+                }
+                FindObjectOfType<MainCamera>().TriggerShake(0.1f, 0.1f);
+                Destroy(gameObject);
+            }
         }
     }
 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        target = GameObject.FindWithTag("EnemyTwo").transform;
-        Vector2 direction = (Vector2)target.position - rigidBody.position;
-        direction.Normalize();
-        float rotateAmount = Vector3.Cross(direction, transform.up).z;
-        rigidBody.angularVelocity = -angleChangingSpeed * rotateAmount;
-        rigidBody.velocity = transform.up * movementSpeed;
+        targets = GameObject.FindGameObjectsWithTag(tom);
+        distances = new float[targets.Length];
     }
 
     public void Shootie(Vector3 offset)
@@ -90,6 +88,30 @@ public class Shoot : MonoBehaviour
     }
     private void Update()
     {
-            target = GameObject.FindWithTag("EnemyTwo").transform;
+        for (int i = 0; i <= targets.Length - 1; i++)
+        {
+            try{
+            distances[i] = Vector3.Distance(transform.position, targets[i].transform.position);
+            } catch(MissingReferenceException) {
+                //I just want the error message gone
+            }
+        }
+        for (int i = 0; i <= targets.Length - 1; i++)
+        {
+            if (distances[i] < closest)
+            {
+                closest = distances[i];
+                closestIndex = i;
+            }
+        }
+        target = targets[closestIndex].transform;
+        
+        if(target != null) {
+            Vector2 direction = (Vector2)target.position - rigidBody.position;
+            direction.Normalize();
+            float rotateAmount = Vector3.Cross(direction, transform.up).z;
+            rigidBody.angularVelocity = -angleChangingSpeed * rotateAmount;
+            rigidBody.velocity = transform.up * movementSpeed;
+        }
     }
 }
