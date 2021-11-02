@@ -55,7 +55,7 @@ public class EnemyMove : MonoBehaviour
     {
         //check if near the CurrentPoint
         Vector3 direction = Points[CurrentPoint] - transform.position;
-
+        
         if (direction.magnitude <= CloseEnough * CloseEnough)
         {
             //if near move to next
