@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 8313073742365193264}
   - component: {fileID: 6641522363194299512}
   - component: {fileID: 6641522363194299513}
+  - component: {fileID: 1570255075024479346}
   m_Layer: 0
   m_Name: Player
   m_TagString: Kirito
@@ -5156,6 +5157,14 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!81 &1570255075024479346
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8313073742365193277}
+  m_Enabled: 1
 --- !u!1 &8313073742412861798
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,10 @@ public class Shoot : MonoBehaviour
     public float angleChangingSpeed;
     public float movementSpeed;
     public string tom = "EnemyTwo";
+    GameObject[] targets;
+    float[] distances;
+    float closest = 500000;
+    int closestIndex;
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -66,6 +70,8 @@ public class Shoot : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        targets = GameObject.FindGameObjectsWithTag(tom);
+        distances = new float[targets.Length];
     }
 
     // Update is called once per frame
@@ -91,6 +97,19 @@ public class Shoot : MonoBehaviour
     }
     private void Update()
     {
-            target = GameObject.FindWithTag(tom).transform;
+        for (int i = 0; i <= targets.Length - 1; i++)
+        {
+            distances[i] = Vector3.Distance(transform.position, targets[i].transform.position);
+        }
+        for (int i = 0; i <= targets.Length - 1; i++)
+        {
+            if (distances[i] < closest)
+            {
+                closest = distances[i];
+                closestIndex = i;
+            }
+        }
+
+        target = targets[closestIndex].transform;
     }
 }
